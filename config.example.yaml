@@ -1,0 +1,92 @@
+# LiveBytes 配置文件示例
+
+## 监控配置
+monitor:
+  # 工作空间根目录
+  workspace: "./workspace"
+  
+  # 是否递归监控子目录
+  recursive: true
+  
+  # 文件过滤规则（支持通配符）
+  filters:
+    - "*.txt"
+    - "*.md"
+    - "*.json"
+  
+  # 忽略的目录
+  ignore:
+    - ".git"
+    - "node_modules"
+    - "__pycache__"
+
+## 调度配置
+scheduler:
+  # 最大并发任务数
+  maxConcurrent: 5
+  
+  # 任务队列大小
+  queueSize: 100
+  
+  # 任务超时时间（秒）
+  timeout: 300
+  
+  # 是否启用优先级调度
+  enablePriority: true
+
+## AI 引擎配置
+engine:
+  # 引擎类型（例如：openai, local, custom）
+  type: "openai"
+  
+  # AI 模型名称
+  model: "gpt-4"
+  
+  # API 密钥（建议使用环境变量）
+  apiKey: "${OPENAI_API_KEY}"
+  
+  # 超时时间（秒）
+  timeout: 60
+  
+  # 重试次数
+  maxRetries: 3
+  
+  # 启用的插件列表
+  plugins:
+    - "text-processor"
+    - "code-analyzer"
+
+## 结果管理配置
+manager:
+  # 结果保留时间（天）
+  retentionDays: 30
+  
+  # 是否启用版本控制
+  enableVersioning: true
+  
+  # 是否自动清理临时文件
+  autoCleanup: true
+
+## 日志配置
+logging:
+  # 日志级别（debug, info, warn, error）
+  level: "info"
+  
+  # 日志输出格式（text, json）
+  format: "text"
+  
+  # 日志文件路径
+  file: "./logs/livebytes.log"
+  
+  # 是否同时输出到控制台
+  console: true
+
+## 工作空间目录结构
+# 系统会自动创建以下目录结构：
+# workspace/
+# ├── input/          # 输入目录
+# ├── output/         # 输出目录
+# ├── processing/     # 处理中目录
+# ├── completed/      # 完成目录
+# ├── failed/         # 失败目录
+# └── config/         # 配置目录
