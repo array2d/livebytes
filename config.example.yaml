@@ -1,6 +1,6 @@
 # LiveBytes 配置文件示例
 
-## 系统目录配置
+# 系统目录配置
 system:
   # LiveBytes 系统根目录
   root: "./livebytes_root"
@@ -16,7 +16,7 @@ system:
   # 工作空间目录（相对于系统根目录）
   workspace: "var/workspace"
 
-## 监控配置
+# 监控配置
 monitor:
   # 工作空间根目录
   workspace: "./livebytes_root/var/workspace"
@@ -34,7 +34,7 @@ monitor:
     - "node_modules"
     - "__pycache__"
 
-## 调度配置
+# 调度配置
 scheduler:
   # 最大并发任务数
   maxConcurrent: 5
@@ -48,7 +48,7 @@ scheduler:
   # 是否启用优先级调度
   enablePriority: true
 
-## AI 引擎配置
+# AI 引擎配置
 engine:
   # 引擎类型（例如：openai, local, custom）
   type: "openai"
@@ -70,7 +70,7 @@ engine:
     - "text-processor"
     - "code-analyzer"
 
-## 结果管理配置
+# 结果管理配置
 manager:
   # 结果保留时间（天）
   retentionDays: 30
@@ -81,7 +81,7 @@ manager:
   # 是否自动清理临时文件
   autoCleanup: true
 
-## 日志配置
+# 日志配置
 logging:
   # 日志级别（debug, info, warn, error）
   level: "info"
@@ -95,7 +95,7 @@ logging:
   # 是否同时输出到控制台
   console: true
 
-## 工作空间目录结构
+# 工作空间目录结构
 # 系统会自动创建以下目录结构：
 # livebytes_root/
 # ├── etc/            # 系统配置目录
