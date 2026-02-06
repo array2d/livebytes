@@ -21,11 +21,11 @@ LiveBytes 是一个基于文件系统的 AI Agent 框架。本手册将帮助您
 
 2. **提交任务**
 
-在工作空间的 `input/` 目录中创建任务文件：
+在工作空间的 `input/` 目录中创建任务文件（使用专用后缀 `.lbtask`）：
 
 ```bash
 # 创建一个文本处理任务
-echo "需要处理的文本内容" > workspace/input/task1.txt
+echo "需要处理的文本内容" > livebytes_root/var/workspace/input/task1.lbtask
 ```
 
 3. **查看结果**
@@ -33,7 +33,21 @@ echo "需要处理的文本内容" > workspace/input/task1.txt
 处理完成后，在 `output/` 目录中查看结果：
 
 ```bash
-cat workspace/output/task1_result.txt
+cat livebytes_root/var/workspace/output/task1_result.txt
+```
+
+## 系统目录结构
+
+LiveBytes 参考 Linux 目录结构，在系统根目录下创建固定名称的目录：
+
+```
+livebytes_root/
+├── etc/            # 系统配置目录
+├── var/            # 运行数据目录
+│   └── workspace/  # 工作空间目录
+├── log/            # 日志目录
+├── run/            # 运行时目录
+└── tmp/            # 临时目录
 ```
 
 ## 工作空间结构
@@ -41,8 +55,8 @@ cat workspace/output/task1_result.txt
 LiveBytes 使用统一的工作空间目录结构：
 
 ```
-workspace/
-├── input/          # 放置待处理的文件
+livebytes_root/var/workspace/
+├── input/          # 放置待处理的文件（.lbtask）
 ├── output/         # 获取处理结果
 ├── processing/     # 正在处理的任务（系统管理）
 ├── completed/      # 已完成的任务（系统管理）
@@ -54,7 +68,7 @@ workspace/
 
 #### input/ - 输入目录
 
-这是您提交任务的地方。只需将文件放入此目录，LiveBytes 会自动检测并开始处理。
+这是您提交任务的地方。只需将 `.lbtask` 文件放入此目录，LiveBytes 会自动检测并开始处理。
 
 **支持的操作**：
 - 创建新文件：触发新任务
@@ -96,14 +110,14 @@ workspace/
 
 ### 全局配置
 
-通过 `config.yaml` 文件配置全局参数。参考 `config.example.yaml`。
+通过 `livebytes_root/etc/livebytes.yaml` 文件配置全局参数。参考 `config.example.yaml`。
 
 ### 任务级配置
 
 为特定任务创建配置文件：
 
 ```yaml
-# workspace/config/task1.yaml
+# livebytes_root/var/workspace/config/task1.yaml
 priority: high        # 任务优先级：low, normal, high
 timeout: 120         # 超时时间（秒）
 engine:
@@ -204,7 +218,7 @@ tail -f logs/livebytes.log
 
 使用有意义的文件名，便于识别和管理：
 ```
-✓ user_feedback_20260206.txt
+✓ user_feedback_20260206.lbtask
 ✗ file1.txt
 ```
 
